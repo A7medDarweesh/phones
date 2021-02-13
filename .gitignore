@@ -1,0 +1,6 @@
+backend/HELP.md
+*.iml
+backend/.idea/
+backend/.mvn/wrapper/maven-wrapper.jar
+frontend/node_modules/
+frontend/build/
