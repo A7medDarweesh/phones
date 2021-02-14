@@ -16,14 +16,6 @@ public class Phone
     private String country;
     @JsonIgnore
     private boolean valid;
+    private String state;
 
-    public String getState()
-    {
-        return valid ? VALID_NUMBER : INVALID_NUMBER;
-    }
-
-    public boolean isNotValid()
-    {
-        return !valid;
-    }
 }

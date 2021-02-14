@@ -16,11 +16,10 @@ public class PhoneDB
     public PhoneDB(JdbcTemplate template)
     {
         this.template = template;
-        transformer=new PhoneTransformer();
     }
-    public List<Phone>allNumbers(){
+    public List<String>allNumbers(){
         return template.query("SELECT phone from customer",
-                (resultSet, rowNum) -> transformer.transform(resultSet.getString("phone")));
+                (resultSet, rowNum) -> resultSet.getString("phone"));
 
     }
 }
