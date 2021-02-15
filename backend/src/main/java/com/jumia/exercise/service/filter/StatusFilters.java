@@ -4,9 +4,8 @@ import com.jumia.exercise.data.Phone;
 import com.jumia.exercise.data.State;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -17,7 +16,7 @@ import static com.jumia.exercise.data.State.VALID;
 @Service
 public class StatusFilters
 {
-    private final Map<State, Function<List<Phone>, List<Phone>>> initialFilters = new HashMap<>();
+    private final EnumMap<State, Function<List<Phone>, List<Phone>>> initialFilters = new EnumMap<>(State.class);
 
     public StatusFilters()
     {

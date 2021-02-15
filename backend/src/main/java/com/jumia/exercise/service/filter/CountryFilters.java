@@ -4,16 +4,15 @@ import com.jumia.exercise.data.Country;
 import com.jumia.exercise.data.Phone;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class CountryFilters
 {
-    private final Map<Country, Function<List<Phone>, List<Phone>>> initialFilters = new HashMap<>();
+    private final EnumMap<Country, Function<List<Phone>, List<Phone>>> initialFilters = new EnumMap<>(Country.class);
 
     public CountryFilters()
     {

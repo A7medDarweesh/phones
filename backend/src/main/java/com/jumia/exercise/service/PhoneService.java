@@ -22,7 +22,7 @@ public class PhoneService
         transformer = new PhoneTransformer();
     }
 
-    public List<Phone> FilteredPhones(@NonNull List<Function<List<Phone>, List<Phone>>> filters)
+    public List<Phone> filteredPhones(@NonNull List<Function<List<Phone>, List<Phone>>> filters)
     {
         List<Phone> phones = db.allNumbers().stream().map(number -> transformer.transform(number)).collect(Collectors.toList());
 

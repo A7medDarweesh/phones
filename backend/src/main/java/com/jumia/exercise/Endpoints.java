@@ -37,7 +37,7 @@ public class Endpoints
         Function<List<Phone>, List<Phone>> countryFilter = countryFilters.forCountryParameter(countryParameter);
         Function<List<Phone>, List<Phone>> statusFilter = statusFilters.forStatusParameter(statusParameter);
 
-        return new ResponseEntity<>(phoneService.FilteredPhones(Arrays.asList(countryFilter,statusFilter)), HttpStatus.OK);
+        return new ResponseEntity<>(phoneService.filteredPhones(Arrays.asList(countryFilter,statusFilter)), HttpStatus.OK);
 
 
     }
