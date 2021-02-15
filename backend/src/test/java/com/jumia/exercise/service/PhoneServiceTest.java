@@ -5,7 +5,6 @@ import com.jumia.exercise.data.Phone;
 import com.jumia.exercise.service.db.PhoneDB;
 import com.jumia.exercise.service.filter.CountryFilters;
 import com.jumia.exercise.service.filter.StatusFilters;
-import com.jumia.exercise.service.transformer.PhoneTransformer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,7 +34,7 @@ class PhoneServiceTest
     void when_noFilterGiven_expect_allItems()
     {
        PhoneService service=new PhoneService(db);
-        List<Phone> phoneLis = service.FilteredPhones(Collections.emptyList());
+        List<Phone> phoneLis = service.filteredPhones(Collections.emptyList());
         assertEquals(phoneLis.size(),numbers.size());
 
     }
@@ -46,7 +44,7 @@ class PhoneServiceTest
        PhoneService service=new PhoneService(db);
         CountryFilters filters=new CountryFilters();
 
-        List<Phone> phoneLis = service.FilteredPhones(Arrays.asList(filters.forCountryParameter(COUNTRY_PARAMETER)));
+        List<Phone> phoneLis = service.filteredPhones(Arrays.asList(filters.forCountryParameter(COUNTRY_PARAMETER)));
         assertTrue(phoneLis.stream().allMatch(phone -> phone.getCountry().equals(Country.fromString(COUNTRY_PARAMETER).toString())));
 
     }
@@ -56,7 +54,7 @@ class PhoneServiceTest
        PhoneService service=new PhoneService(db);
         StatusFilters filters=new StatusFilters();
 
-        List<Phone> phoneLis = service.FilteredPhones(Arrays.asList(filters.forStatusParameter(STATUS_PARAMETER)));
+        List<Phone> phoneLis = service.filteredPhones(Arrays.asList(filters.forStatusParameter(STATUS_PARAMETER)));
         assertTrue(phoneLis.stream().allMatch(Phone::isValid));
 
     }
@@ -66,7 +64,7 @@ class PhoneServiceTest
        PhoneService service=new PhoneService(db);
         StatusFilters statusFilter=new StatusFilters();
         CountryFilters countryFilter=new CountryFilters();
-        List<Phone> phoneLis = service.FilteredPhones(Arrays.asList(statusFilter.forStatusParameter(STATUS_PARAMETER),countryFilter.forCountryParameter(COUNTRY_PARAMETER)));
+        List<Phone> phoneLis = service.filteredPhones(Arrays.asList(statusFilter.forStatusParameter(STATUS_PARAMETER),countryFilter.forCountryParameter(COUNTRY_PARAMETER)));
         assertTrue(phoneLis.stream().allMatch(Phone::isValid));
         assertTrue(phoneLis.stream().allMatch(phone -> phone.getCountry().equals(Country.fromString(COUNTRY_PARAMETER).toString())));
 
