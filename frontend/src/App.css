@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  background-color: rgb(237, 244, 248);
 }
-
+.row {
+  margin-bottom: 1%;
+  background-color: #272723;
+  color: wheat;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

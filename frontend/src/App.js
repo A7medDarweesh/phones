@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.css';
 import axios from "axios";
 import { useTable } from 'react-table'
 import "./App.css";
@@ -18,7 +19,7 @@ function Table({ columns, data }) {
 
   // Render the UI for your table
   return (
-    <table {...getTableProps()}>
+    <table className='table table-striped table-bordered' {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -118,8 +119,8 @@ function App() {
 
   return (
     <div className="App">
-      <div class='navigation'>
-        <div class='counties'>Filter by country <select
+      <div className='container-fluid row'>
+        <div className=' col-md-6'>Filter by country <select
       value={selectedCountry}
       onChange={(e) =>changeCountryOption(e)}
     >
@@ -130,7 +131,7 @@ function App() {
       ))}
     </select>
     </div>
-      <div class='status'>Filter by status <select
+      <div className='row col-md-6'>Filter by status <select
       value={selectedStatus}
       onChange={(e) =>changeStatusOption(e)}
     >
@@ -146,7 +147,7 @@ function App() {
       {loadingData ? (
         <p>Loading Please wait...</p>
       ) : (
-        <Table columns={columns} data={data} />
+       <div className="container-fluid" ><Table columns={columns} data={data} /></div>
       )}
     </div>
   );
